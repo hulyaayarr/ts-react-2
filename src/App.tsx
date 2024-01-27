@@ -1,35 +1,47 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import "./App.css";
+import { TodoList, TodoListItemProps } from "./TodoList";
+import { TodoListItem } from "./TodoListItem";
+
+const todos: TodoListItem[] = [
+  {
+    subject: "Record Video",
+    description: "Record video for the subject react and typescript",
+    isCompleted: false,
+  },
+  {
+    subject: "Organize Syllabus",
+    description: "Front-end syllabus should be updated",
+    isCompleted: false,
+  },
+  {
+    subject: "Prepare Homework",
+    description: "Prepare well-defined homework subject for react",
+    isCompleted: false,
+  },
+  {
+    subject: "Design Website",
+    description: "Prepare a well-designed website",
+    isCompleted: false,
+  },
+];
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <h1>React - Render Props</h1>
+      <TodoList
+        title="Todo List"
+        todos={todos}
+        renderListItem={(todo: TodoListItemProps) => (
+          <TodoListItem
+            subject={todo.subject}
+            description={todo.description}
+            isCompleted={todo.isCompleted}
+          />
+        )}
+      />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
